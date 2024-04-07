@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import WhatIsThis from './views/main/WhatIsThis.vue';
 </script>
 
 <template>
   <v-app>
     <v-app-bar title="cStDf">
       <template v-slot:append>
+        <WhatIsThis />
         <v-btn
           color="info"
           density="compact"

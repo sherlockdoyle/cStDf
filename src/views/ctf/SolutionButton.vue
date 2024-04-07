@@ -68,7 +68,7 @@ function closeDialog() {
 }
 function askAgain() {
   message.value = getMessage();
-  showSolution.value = Math.random() < 0.5;
+  showSolution.value = Math.random() < 0.25;
 }
 </script>
 

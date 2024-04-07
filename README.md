@@ -1,6 +1,6 @@
 # cStDf
 
-Capture the Flag, or CTF, is a term you might have come. Wikipedia describes it as an activity where participants try to locate hidden text strings, known as "flags". These flags are concealed within programs or websites that are intentionally made vulnerable.
+Capture the Flag, or CTF, is a term you might have haerd. Wikipedia describes it as an activity where participants try to locate hidden text strings, known as "flags". These flags are concealed within programs or websites that are intentionally made vulnerable.
 
 `cStDf` is a set of challenges that fall under this category of CTF. It is created using Vue and Vuetify. However, it's important to note that these challenges might not fit the traditional definition of CTF.
 

@@ -126,14 +126,11 @@ function checkFlag() {
 </template>
 
 <style scoped>
-.v-card {
-  font-size: 1.1em;
-  &::before {
-    display: block;
-    float: left;
-    padding-top: 100%;
-    content: '';
-  }
+.v-card::before {
+  display: block;
+  float: left;
+  padding-top: 100%;
+  content: '';
 }
 </style>
 <style>

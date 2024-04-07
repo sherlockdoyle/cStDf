@@ -26,6 +26,8 @@ onUpdated(() => {
       <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
       <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" stroke-linejoin="round" />
     </svg>
+
+    <div class="hint text-h5 font-weight-black">Try another!</div>
   </v-overlay>
 </template>
 
@@ -89,6 +91,16 @@ onUpdated(() => {
 @keyframes stroke {
   100% {
     stroke-dashoffset: 0;
+  }
+}
+
+.hint {
+  opacity: 0;
+  animation: fade 0.1s ease-in 1s forwards;
+}
+@keyframes fade {
+  100% {
+    opacity: 1;
   }
 }
 </style>

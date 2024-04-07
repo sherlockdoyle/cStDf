@@ -11,6 +11,7 @@ pre {
   color: rgb(201, 209, 217);
   font-weight: 400;
   font-family: monospace;
+  white-space: pre-wrap;
 
   span.i {
     color: rgb(255, 123, 114);
