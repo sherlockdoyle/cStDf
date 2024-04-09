@@ -72,7 +72,7 @@ table {
         justify-content: center;
         align-items: center;
         aspect-ratio: 1 / 1;
-        font-size: 5vw;
+        font-size: min(2.3em, 5vw);
 
         input {
           appearance: textfield;

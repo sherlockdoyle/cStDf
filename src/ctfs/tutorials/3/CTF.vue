@@ -14,8 +14,8 @@ import SudokuBoard from '@/components/SudokuBoard.vue';
 .f {
   display: flex;
   code {
-    font-size: 5vw;
-    line-height: 7.5vw;
+    font-size: min(2.3em, 5vw);
+    line-height: min(3.45, 7.5vw);
   }
 }
 </style>

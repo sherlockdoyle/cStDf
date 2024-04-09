@@ -5,13 +5,24 @@ import { getAllSolved } from '@/storage/solved';
 import { computed, ref } from 'vue';
 import SummaryCard from './SummaryCard.vue';
 
+const arrangedCtfEntries = computed(() => {
+  const ctfEntries = Object.entries(ctfs);
+  type Entry = (typeof ctfEntries)[number];
+  const tutorials = Array<Entry>(),
+    rest = Array<Entry>();
+  for (const entry of ctfEntries) {
+    if (entry[0].startsWith('tutorials/')) tutorials.push(entry);
+    else rest.push(entry);
+  }
+  return tutorials.sort((a, b) => a[0].localeCompare(b[0])).concat(rest);
+});
 const solved = getAllSolved();
 
 const deferSolved = ref(true);
 const sortedCtfs = computed(() => {
-  const ctfEntries = Object.entries(ctfs);
-  if (deferSolved.value) ctfEntries.sort((a, b) => Number(solved.has(a[0])) - Number(solved.has(b[0])));
-  return ctfEntries;
+  if (deferSolved.value)
+    return [...arrangedCtfEntries.value].sort((a, b) => Number(solved.has(a[0])) - Number(solved.has(b[0])));
+  return arrangedCtfEntries.value;
 });
 </script>
 

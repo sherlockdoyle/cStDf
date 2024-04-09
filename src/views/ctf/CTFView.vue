@@ -1,47 +1,19 @@
 <script setup lang="ts">
 import HeadingAction from '@/components/HeadingAction.vue';
-import ctfs, { type Details } from '@/ctfs/all-ctfs';
+import ctfs from '@/ctfs/all-ctfs';
 import { addSolved } from '@/storage/solved';
 import SparkMD5 from 'spark-md5';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 import SolutionButton from './SolutionButton.vue';
 import SolvedAnimationOverlay from './SolvedAnimationOverlay.vue';
-
-interface DataLoading {
-  loading: true;
-  error: null;
-  data: null;
-}
-interface DataError {
-  loading: false;
-  error: Error;
-  data: null;
-}
-interface DataSuccess<T> {
-  loading: false;
-  error: null;
-  data: T;
-}
-type Data<T> = DataLoading | DataError | DataSuccess<T>;
+import useAsyncLoader from './async-loader';
 
 const path = useRoute().params.path as string;
 const ctf = ctfs[path];
 
-const details = ref<Data<Details>>({ loading: true, error: null, data: null });
-watch(
-  () => path,
-  async () => {
-    details.value = { loading: true, error: null, data: null };
-    try {
-      details.value = { loading: false, error: null, data: await ctf.details() };
-    } catch (e) {
-      details.value = { loading: false, error: e instanceof Error ? e : new Error(String(e)), data: null };
-    }
-  },
-  { immediate: true },
-);
-const { Description, Ctf } = ctf;
+const details = useAsyncLoader(ctf.details, path);
+const { Description, CtfComponent } = ctf;
 
 const flagInput = ref(''),
   isValid = ref(false),
@@ -98,7 +70,7 @@ function checkFlag() {
               />
             </v-col>
           </v-row>
-          <v-row align="center" justify="space-between" no-gutters class="mt-1 ga-6">
+          <v-row align="center" justify="space-between" no-gutters class="ga-6 mt-1">
             <v-col>
               <v-alert
                 v-if="solveStatus === 'error'"
@@ -117,8 +89,10 @@ function checkFlag() {
     </v-responsive>
 
     <hr style="margin-left: auto; width: 75%" />
-    <v-card class="mx-2 my-4 pa-6 d-flex justify-center align-center">
-      <Ctf />
+    <v-card class="d-flex align-center mx-2 my-4 overflow-x-auto">
+      <v-card-item v-if="CtfComponent" class="d-block flex-0-1 mx-auto">
+        <CtfComponent />
+      </v-card-item>
     </v-card>
 
     <SolvedAnimationOverlay :visible="showSolved" />
