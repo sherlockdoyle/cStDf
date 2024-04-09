@@ -8,6 +8,7 @@ interface CTF {
   details: () => Promise<Details>;
   Description: Component;
   CtfComponent?: Component;
+  imageUrl?: () => Promise<string>;
 }
 
 const names = import.meta.glob<true, string, string>('@/ctfs/**/name', {
@@ -18,6 +19,10 @@ const names = import.meta.glob<true, string, string>('@/ctfs/**/name', {
 const details = import.meta.glob<boolean, string, Details>('@/ctfs/**/details.json', { import: 'default' });
 const descriptions = import.meta.glob<boolean, string, Component>('@/ctfs/**/description.md', { import: 'default' });
 const ctfComponents = import.meta.glob<boolean, string, Component>('@/ctfs/**/CTF.vue', { import: 'default' });
+const ctfImages = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.png', {
+  query: 'url',
+  import: 'default',
+});
 
 const ctfs: Record<string, CTF> = {};
 for (const namePath of Object.keys(names)) {
@@ -31,6 +36,7 @@ for (const namePath of Object.keys(names)) {
     details: details[pathPrefix + 'details.json'],
     Description: defineAsyncComponent(descriptions[pathPrefix + 'description.md']),
     CtfComponent: ctfComponent && defineAsyncComponent(ctfComponent),
+    imageUrl: ctfImages[pathPrefix + 'CTF.png'],
   };
 }
 

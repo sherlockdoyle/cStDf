@@ -11,6 +11,7 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
+    "create-ctf": "tsx ./scripts/create-ctf.ts $1",
     "sol-rewrite": "tsx ./scripts/sol-rewrite.ts"
   },
   "dependencies": {

@@ -1,0 +1,1 @@
+There is a special image in Dexter's laboratory. It was given to him by his pal at his birthday. The image is like a colorful map made of different colors that show a secret. Among these secrets, one stands out - a location marked with the symbol of a pig, etched in pen. Can you, standing in for Dexter, discover the pig?

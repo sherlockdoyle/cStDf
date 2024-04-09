@@ -14,6 +14,7 @@ const ctf = ctfs[path];
 
 const details = useAsyncLoader(ctf.details, path);
 const { Description, CtfComponent } = ctf;
+const imageUrl = ctf.imageUrl && useAsyncLoader(ctf.imageUrl, path);
 
 const flagInput = ref(''),
   isValid = ref(false),
@@ -40,11 +41,13 @@ function checkFlag() {
 </script>
 
 <template>
-  <v-layout v-if="details.loading" class="justify-center">
+  <v-layout v-if="details.loading || imageUrl?.loading" class="justify-center">
     <v-progress-circular indeterminate />
   </v-layout>
 
-  <v-alert v-else-if="details.error" color="error" icon="$error">{{ details.error }}</v-alert>
+  <v-alert v-else-if="details.error || imageUrl?.error" color="error" icon="$error">
+    {{ details.error }} {{ imageUrl?.error }}
+  </v-alert>
 
   <template v-else>
     <HeadingAction :title="ctf.name">
@@ -93,6 +96,8 @@ function checkFlag() {
       <v-card-item v-if="CtfComponent" class="d-block flex-0-1 mx-auto">
         <CtfComponent />
       </v-card-item>
+
+      <v-img v-else-if="imageUrl" :src="imageUrl.data" />
     </v-card>
 
     <SolvedAnimationOverlay :visible="showSolved" />
