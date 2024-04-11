@@ -31,6 +31,15 @@ const sortedCtfs = computed(() => {
     <v-checkbox v-model="deferSolved" label="Defer Solved" density="compact" hide-details />
   </HeadingAction>
 
+  <v-alert
+    v-if="arrangedCtfEntries.length === solved.size"
+    color="info"
+    variant="outlined"
+    max-width="512"
+    class="mx-auto mb-4"
+  >
+    Please keep checking. I plan to add more puzzles.
+  </v-alert>
   <div class="grid">
     <SummaryCard
       v-for="[path, { name }] in sortedCtfs"

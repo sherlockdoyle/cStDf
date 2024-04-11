@@ -22,7 +22,8 @@ fs.writeFileSync(
   path.join(fullPath, 'details.json'),
   `{
   "flagMD5": ""
-}`,
+}
+`,
 );
 fs.writeFileSync(
   path.join(fullPath, 'CTF.vue'),

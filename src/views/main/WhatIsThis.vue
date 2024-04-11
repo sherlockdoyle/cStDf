@@ -2,39 +2,54 @@
 import { ref } from 'vue';
 
 const showDialog = ref(false);
+const showHint = ref(false);
 </script>
 
 <template>
-  <v-btn color="info" density="compact" size="x-large" icon="mdi-help" @click="showDialog = true" />
+  <v-btn
+    color="info"
+    density="compact"
+    size="x-large"
+    icon="mdi-help"
+    @click="
+      showDialog = true;
+      showHint = false;
+    "
+  />
 
   <v-dialog v-model="showDialog" max-width="512">
     <v-card title="What is this?">
+      <template v-slot:append>
+        <v-btn rounded size="small" @click="showHint = !showHint" />
+      </template>
+
       <v-card-text>
         <p>
-          Wikipedia describes Capture the Flag, or CTF, as an activity where participants try to locate hidden text
-          strings, known as "flags". These flags are concealed within programs or websites that are intentionally made
-          vulnerable.
+          Welcome to the world of <code>cStDf</code>! It's a treasure trove of puzzles, much like a Capture The Flag
+          (CTF) game. Your mission, should you choose to accept it, is to hunt for a hidden string, known as a flag.
+          This flag could be tucked away in a website, a puzzle, a file, or hidden in a code waiting to be deciphered.
         </p>
         <p>
-          Here you've a set of challenges that fall loosely under this category of CTF. These challenges might not fit
-          the traditional definition of CTF. In fact, it might be more accurate to describe them as a series of puzzles
-          or riddles. The objective of these challenges is to find a hidden string, also referred to as a flag, within
-          various files. Alternatively, you might also be tasked with decoding something.
-        </p>
-        <br />
-        <p>
-          In essence, <code>cStDf</code> is more akin to a game. It is a collection of various unique ideas that have
-          crossed my mind about hiding things. You might need to refer to some of my other projects to solve these
-          challenges. But then again, you might not need to.
+          Think of this as a game, a playground of random ideas that I've had on how to hide things. It's all in your
+          browser! No need to worry about storage or servers. Some of my other projects might give you a leg up in
+          solving these challenges, but then again, they might not. Feel free to use any tools you have, but remember,
+          there's no need to use the devtools/inspect element unless it's mentioned.
         </p>
         <p>
-          You're also free to use other tools at your disposal. The only rule is to play fair and avoid cheating. After
-          all, the real fun lies in solving the puzzles on your own. Enjoy the game! :)
+          The only rule here is to play nice and avoid cheating. After all, the real joy is in cracking the puzzles by
+          yourself. So, dive in and have fun!
         </p>
 
         <v-alert icon="$info" color="info" variant="tonal">
           Except the first four tutorials, the puzzles are in no particular order.
         </v-alert>
+
+        <p v-if="showHint">
+          Usually, the name or description of the puzzle will drop a hint or two.
+          <br />
+          Some online tools for solving substitution ciphers might show the answer in the wrong letter case (upper vs
+          lower). The correct case will be given in the description.
+        </p>
       </v-card-text>
 
       <v-card-actions>

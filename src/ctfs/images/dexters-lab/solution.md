@@ -1,9 +1,9 @@
 =03RJB1TONVSFJVRIR1emREdTNGI6MXagcWYsZGIlhGV
 
-.kz vuftvu fk /evgxzg/ivygzt/jcffk/dft.ezbdli//:jgkky vbzc cffk r vjL .ivygzt evgxzG vyk ykzn uvuftev jz xrcw vyK
+.uj fepdfe pu /ofqhjq/sfiqjd/tmppu/npd.ojlnvs//:tquui fljm mppu b ftV .sfiqjd ofqhjQ fiu iujx efepdof tj hbmg fiU
 
-.kepj ilx iiw sx qilx js irs ikrelG .ikeqm ilx rm wvspsg iqew sax ive ivilX .ikeqm ilx js ixxipet ilx xysogilg sx asppmT/PMT vs TQMK iomp iveaaxjsw e iwY
+.qkvp ord ooc yd word py oxy oqxkrM .oqkws ord xs cbyvym owkc ygd obk oborD .oqkws ord py oddovkz ord deyumorm yd gyvvsZ/VSZ by ZWSQ ousv obkggdpyc k ocE
 
 .cnzebybp eb rggrync ebybp n frfh upvuj TAC qrkrqav an fv gV
 
-.cte ,"pam lufroloc" ,"yadhtrib sih ta lap sih" ,"baL s'retxeD ni egamI" .noitpircsed eht ni stnih ynam era erehT
+.cte ,"pam lufroloc" ,"yadhtrib sih ta lap sih" ,"bal s'retxeD ni egamI" .noitpircsed eht ni stnih ynam era erehT
