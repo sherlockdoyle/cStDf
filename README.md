@@ -16,9 +16,13 @@ The puzzles are all located in the [`src/ctfs`](src/ctfs) directory. Each puzzle
 
 - `name`: Contains the name of the puzzle in a single line.
 - `description.md`: Provides the description or setup for the puzzle.
+- `CTF.vue`, `CTF.html`, `CTF.png`: The actual puzzle.
 - `details.json`: Contains the MD5 hash of the flag in JSON format.
 - `Sol.md`: Write the solution for the puzzle.
-- `CTF.vue`: A Vue component that displays the puzzle.
+
+### `CTF.vue`, `CTF.html`, `CTF.png`
+
+You can create one of the above files for the puzzle. It could be a *Vue component*, an *HTML file*, or an *image*. If there are multiple files present, the puzzles follow the order specified—meaning the first file gets rendered.
 
 ### `details.json`
 

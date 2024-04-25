@@ -25,19 +25,22 @@ function rewrite(content: string) {
   return lines.join('\n\n').split('').reverse().join('');
 }
 
-glob('src/ctfs/**/Sol.md', async (err, files) => {
+glob('src/ctfs/**/Sol.md', async (err, paths) => {
   if (err) {
     console.error('Error while finding files:', err);
     return;
   }
 
-  for (const file of files) {
+  for (const path of paths) {
     try {
-      console.log(`Processing file ${file}...`);
-      const content = await fs.readFile(file, 'utf-8');
-      await fs.writeFile(file.replace('Sol.md', 'solution.md'), rewrite(content), 'utf-8');
+      const newPath = path.replace('Sol.md', 'solution.md');
+      if ((await fs.lstat(path)).mtimeMs > (await fs.lstat(newPath)).mtimeMs) {
+        console.log(`Processing file ${path}...`);
+        const content = await fs.readFile(path, 'utf-8');
+        await fs.writeFile(newPath, rewrite(content), 'utf-8');
+      } else console.log(`Skipped file ${path}.`);
     } catch (err) {
-      console.error(`Error processing file ${file}:`, err);
+      console.error(`Error processing file ${path}:`, err);
     }
   }
 });

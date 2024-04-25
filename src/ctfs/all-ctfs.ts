@@ -1,3 +1,4 @@
+import loadingComponent from '@/components/LoadingComponent.vue';
 import { defineAsyncComponent, type Component } from 'vue';
 
 export interface Details {
@@ -8,6 +9,7 @@ interface CTF {
   details: () => Promise<Details>;
   Description: Component;
   CtfComponent?: Component;
+  htmlUrl?: () => Promise<string>;
   imageUrl?: () => Promise<string>;
 }
 
@@ -19,6 +21,10 @@ const names = import.meta.glob<true, string, string>('@/ctfs/**/name', {
 const details = import.meta.glob<boolean, string, Details>('@/ctfs/**/details.json', { import: 'default' });
 const descriptions = import.meta.glob<boolean, string, Component>('@/ctfs/**/description.md', { import: 'default' });
 const ctfComponents = import.meta.glob<boolean, string, Component>('@/ctfs/**/CTF.vue', { import: 'default' });
+const ctfHtmls = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.html', {
+  query: 'url',
+  import: 'default',
+});
 const ctfImages = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.png', {
   query: 'url',
   import: 'default',
@@ -34,8 +40,9 @@ for (const namePath of Object.keys(names)) {
   ] = {
     name: names[namePath],
     details: details[pathPrefix + 'details.json'],
-    Description: defineAsyncComponent(descriptions[pathPrefix + 'description.md']),
-    CtfComponent: ctfComponent && defineAsyncComponent(ctfComponent),
+    Description: defineAsyncComponent({ loader: descriptions[pathPrefix + 'description.md'], loadingComponent }),
+    CtfComponent: ctfComponent && defineAsyncComponent({ loader: ctfComponent, loadingComponent }),
+    htmlUrl: ctfHtmls[pathPrefix + 'CTF.html'],
     imageUrl: ctfImages[pathPrefix + 'CTF.png'],
   };
 }

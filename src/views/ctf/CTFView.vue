@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import HeadingAction from '@/components/HeadingAction.vue';
+import LoadingComponent from '@/components/LoadingComponent.vue';
 import ctfs from '@/ctfs/all-ctfs';
 import { addSolved } from '@/storage/solved';
 import SparkMD5 from 'spark-md5';
@@ -14,6 +15,7 @@ const ctf = ctfs[path];
 
 const details = useAsyncLoader(ctf.details, path);
 const { Description, CtfComponent } = ctf;
+const htmlUrl = ctf.htmlUrl && useAsyncLoader(ctf.htmlUrl, path);
 const imageUrl = ctf.imageUrl && useAsyncLoader(ctf.imageUrl, path);
 
 const flagInput = ref(''),
@@ -41,12 +43,12 @@ function checkFlag() {
 </script>
 
 <template>
-  <v-layout v-if="details.loading || imageUrl?.loading" class="justify-center">
-    <v-progress-circular indeterminate />
+  <v-layout v-if="details.loading || htmlUrl?.loading || imageUrl?.loading">
+    <LoadingComponent />
   </v-layout>
 
-  <v-alert v-else-if="details.error || imageUrl?.error" color="error" icon="$error">
-    {{ details.error }} {{ imageUrl?.error }}
+  <v-alert v-else-if="details.error || htmlUrl?.error || imageUrl?.error" color="error" icon="$error">
+    {{ details.error }} {{ htmlUrl?.error }} {{ imageUrl?.error }}
   </v-alert>
 
   <template v-else>
@@ -97,7 +99,12 @@ function checkFlag() {
         <CtfComponent />
       </v-card-item>
 
-      <v-img v-else-if="imageUrl" :src="imageUrl.data" />
+      <div v-else-if="htmlUrl?.data" class="iframe">
+        <iframe :src="htmlUrl.data" frameborder="0" width="100%" height="100%" />
+        <v-btn icon="mdi-open-in-new" title="Open website in new tab" :href="htmlUrl.data" target="_blank" />
+      </div>
+
+      <v-img v-else-if="imageUrl?.data" :src="imageUrl.data" />
     </v-card>
 
     <SolvedAnimationOverlay :visible="showSolved" />
@@ -110,6 +117,22 @@ function checkFlag() {
   float: left;
   padding-top: 100%;
   content: '';
+}
+
+.iframe {
+  margin: 1rem;
+  aspect-ratio: 1/1;
+  width: 100%;
+
+  iframe {
+    display: block;
+  }
+
+  a {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 </style>
 <style>

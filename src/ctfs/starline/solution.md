@@ -2,6 +2,6 @@
 
 lssphyi/tvj.lssphyijih.ddd//:waao :lapzild ljpu h z'lylO .lssphyi up zp uylaahw loA
 
-.fengf rug sb lgvfarq ab qrfno aerggnc n jbuf bg rohp rug sb frqvf rgvfbccb bjg atvyn qan rgngbE
+.fengf rug sb lgvfarq ab qrfno aerggnc n jbuf bg rohp rug sb )gutve ,gsry eb xpno ,gabes( frqvf rgvfbccb bjg atvyn qan rgngbE
 
 elliarb ,ngila :stniH
