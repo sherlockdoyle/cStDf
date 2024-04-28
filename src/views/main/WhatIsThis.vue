@@ -11,6 +11,7 @@ const showHint = ref(false);
     density="compact"
     size="x-large"
     icon="mdi-help"
+    title="What is this?"
     @click="
       showDialog = true;
       showHint = false;

@@ -5,7 +5,10 @@ import WhatIsThis from './views/main/WhatIsThis.vue';
 
 <template>
   <v-app>
-    <v-app-bar title="cStDf">
+    <v-app-bar>
+      <template v-slot:title>
+        <router-link to="/">cStDf</router-link>
+      </template>
       <template v-slot:append>
         <WhatIsThis />
         <v-btn
@@ -13,6 +16,7 @@ import WhatIsThis from './views/main/WhatIsThis.vue';
           density="compact"
           size="x-large"
           icon="mdi-github"
+          title="Open GitHub project"
           href="https://github.com/sherlockdoyle/cStDf"
           target="_blank"
         />
@@ -27,6 +31,12 @@ import WhatIsThis from './views/main/WhatIsThis.vue';
   </v-app>
 </template>
 
+<style scoped>
+a {
+  color: inherit;
+  text-decoration: none;
+}
+</style>
 <style>
 .mdi-github {
   --v-icon-size-multiplier: 1.5 !important;
