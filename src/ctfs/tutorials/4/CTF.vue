@@ -4,29 +4,5 @@
 </template>
 
 <style scoped>
-pre {
-  border-radius: 0.5rem;
-  background-color: rgb(13, 17, 23);
-  padding: 0.5rem;
-  color: rgb(201, 209, 217);
-  font-weight: 400;
-  font-family: monospace;
-  white-space: pre-wrap;
-
-  span.i {
-    color: rgb(255, 123, 114);
-  }
-  span.n {
-    color: rgb(121, 192, 255);
-  }
-  span.t {
-    color: rgb(255, 166, 87);
-  }
-  span.f {
-    color: rgb(210, 168, 255);
-  }
-  span.c {
-    color: rgb(139, 148, 158);
-  }
-}
+@import '@/components/code-style.css';
 </style>

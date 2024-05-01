@@ -45,7 +45,6 @@ const sortedCtfs = computed(() => {
       v-for="[path, { name }] in sortedCtfs"
       :key="path"
       :name="name"
-      :visited="true"
       :solved="solved.has(path)"
       :to="`/ctf/${path}`"
     ></SummaryCard>

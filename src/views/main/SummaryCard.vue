@@ -16,3 +16,9 @@ const props = defineProps<{
     hover
   ></v-card>
 </template>
+
+<style scoped>
+.v-card:not(:visited) {
+  color: lightblue;
+}
+</style>

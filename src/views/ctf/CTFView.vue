@@ -94,7 +94,10 @@ function checkFlag() {
     </v-responsive>
 
     <hr style="margin-left: auto; width: 75%" />
-    <v-card class="d-flex align-center mx-2 my-4 overflow-x-auto">
+    <v-card
+      v-if="CtfComponent || htmlUrl?.data || imageUrl?.data"
+      class="d-flex align-center mx-2 my-4 overflow-x-auto"
+    >
       <v-card-item v-if="CtfComponent" class="d-block flex-0-1 mx-auto">
         <CtfComponent />
       </v-card-item>

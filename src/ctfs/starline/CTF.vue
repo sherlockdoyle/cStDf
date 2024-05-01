@@ -48,7 +48,7 @@ const rx = ref(Math.floor(Math.random() * 360)),
 
 <style scoped>
 .v {
-  --size: min(85vw, 512px);
+  --size: min(85vw, 640px);
 
   position: relative;
   width: var(--size);

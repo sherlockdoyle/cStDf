@@ -1,6 +1,15 @@
 import { promises as fs } from 'fs';
 import glob from 'glob';
 
+async function notExists(path: string) {
+  try {
+    await fs.access(path);
+    return false;
+  } catch {
+    return true;
+  }
+}
+
 function rot(str: string, n: number): string {
   return str.replace(/[a-zA-Z]/g, (chr: string) => {
     const start = chr <= 'Z' ? 65 : 97;
@@ -34,7 +43,7 @@ glob('src/ctfs/**/Sol.md', async (err, paths) => {
   for (const path of paths) {
     try {
       const newPath = path.replace('Sol.md', 'solution.md');
-      if ((await fs.lstat(path)).mtimeMs > (await fs.lstat(newPath)).mtimeMs) {
+      if (await notExists(newPath) || (await fs.lstat(path)).mtimeMs > (await fs.lstat(newPath)).mtimeMs) {
         console.log(`Processing file ${path}...`);
         const content = await fs.readFile(path, 'utf-8');
         await fs.writeFile(newPath, rewrite(content), 'utf-8');
