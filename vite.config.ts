@@ -6,7 +6,21 @@ import { defineConfig } from 'vite';
 import vuetify from 'vite-plugin-vuetify';
 
 export default defineConfig({
-  plugins: [vue({ include: [/\.vue$/, /\.md$/] }), markdown({}), vuetify(), vueJsx()],
+  plugins: [
+    vue({ include: [/\.vue$/, /\.md$/] }),
+    markdown({
+      markdownItSetup: md => {
+        const defaultRender =
+          md.renderer.rules.link_open ?? ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
+        md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+          tokens[idx].attrSet('target', '_blank');  // add target='_blank' to all links
+          return defaultRender(tokens, idx, options, env, self);
+        };
+      },
+    }),
+    vuetify(),
+    vueJsx(),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

@@ -18,6 +18,7 @@ const details = useAsyncLoader(ctf.details, path);
 const { Description, CtfComponent } = ctf;
 const htmlUrl = ctf.htmlUrl && useAsyncLoader(ctf.htmlUrl, path);
 const imageUrl = ctf.imageUrl && useAsyncLoader(ctf.imageUrl, path);
+const pdfUrl = ctf.pdfUrl && useAsyncLoader(ctf.pdfUrl, path);
 
 const flagInput = ref(''),
   isValid = ref(false),
@@ -99,19 +100,26 @@ function checkFlag() {
 
     <hr class="ml-auto" />
     <v-card
-      v-if="CtfComponent || htmlUrl?.data || imageUrl?.data"
+      v-if="CtfComponent || htmlUrl?.data || imageUrl?.data || pdfUrl?.data"
       class="d-flex align-center mx-2 my-4 overflow-x-auto"
     >
       <v-card-item v-if="CtfComponent" class="d-block flex-0-1 mx-auto">
         <CtfComponent />
       </v-card-item>
 
-      <div v-else-if="htmlUrl?.data" class="iframe">
-        <iframe :src="htmlUrl.data" frameborder="0" width="100%" height="100%" />
-        <v-btn icon="mdi-open-in-new" title="Open website in new tab" :href="htmlUrl.data" target="_blank" />
-      </div>
-
       <v-img v-else-if="imageUrl?.data" :src="imageUrl.data" />
+
+      <div v-else-if="htmlUrl?.data || pdfUrl?.data" class="container">
+        <template v-if="htmlUrl?.data">
+          <iframe :src="htmlUrl.data" frameborder="0" width="100%" height="100%" />
+          <v-btn icon="mdi-open-in-new" title="Open website in new tab" :href="htmlUrl.data" target="_blank" />
+        </template>
+
+        <template v-else-if="pdfUrl?.data">
+          <embed :src="pdfUrl.data" type="application/pdf" width="100%" height="100%" />
+          <v-btn icon="mdi-download" title="Download PDF" :href="pdfUrl.data" target="_blank" />
+        </template>
+      </div>
     </v-card>
 
     <SolvedAnimationOverlay :visible="showSolved" />
@@ -140,19 +148,29 @@ hr {
   content: '';
 }
 
-.iframe {
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 1rem;
   aspect-ratio: 1/1;
   width: 100%;
 
-  iframe {
+  iframe,
+  embed {
     display: block;
   }
 
-  a {
+  .v-btn {
     position: absolute;
-    top: 0;
     right: 0;
+
+    iframe ~ & {
+      top: 0;
+    }
+    embed ~ & {
+      bottom: 0;
+    }
   }
 }
 </style>
