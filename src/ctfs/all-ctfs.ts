@@ -12,6 +12,7 @@ interface CTF {
   htmlUrl?: () => Promise<string>;
   imageUrl?: () => Promise<string>;
   pdfUrl?: () => Promise<string>;
+  wavUrl?: () => Promise<string>;
 }
 
 const names = import.meta.glob<true, string, string>('@/ctfs/**/name', {
@@ -25,6 +26,7 @@ const ctfComponents = import.meta.glob<boolean, string, Component>('@/ctfs/**/CT
 const ctfHtmls = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.html', { query: 'url', import: 'default' });
 const ctfImages = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.png', { query: 'url', import: 'default' });
 const ctfPdfs = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.pdf', { query: 'url', import: 'default' });
+const ctfWavs = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.wav', { query: 'url', import: 'default' });
 
 const ctfs: Record<string, CTF> = {};
 for (const namePath of Object.keys(names)) {
@@ -41,6 +43,7 @@ for (const namePath of Object.keys(names)) {
     htmlUrl: ctfHtmls[pathPrefix + 'CTF.html'],
     imageUrl: ctfImages[pathPrefix + 'CTF.png'],
     pdfUrl: ctfPdfs[pathPrefix + 'CTF.pdf'],
+    wavUrl: ctfWavs[pathPrefix + 'CTF.wav'],
   };
 }
 
