@@ -2,7 +2,7 @@
 import HeadingAction from '@/components/HeadingAction.vue';
 import LoadingComponent from '@/components/LoadingComponent.vue';
 import ctfs from '@/ctfs/all-ctfs';
-import { addSolved } from '@/storage/solved';
+import { addSolved, getAllSolved } from '@/storage/solved';
 import SparkMD5 from 'spark-md5';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -12,6 +12,7 @@ import useAsyncLoader from './async-loader';
 
 const path = useRoute().params.path as string;
 const ctf = ctfs[path];
+const isSolved = getAllSolved().has(path);
 
 const details = useAsyncLoader(ctf.details, path);
 const { Description, CtfComponent } = ctf;
@@ -53,10 +54,13 @@ function checkFlag() {
 
   <template v-else>
     <HeadingAction :title="ctf.name">
-      <SolutionButton :path="path" />
+      <div class="d-flex flex-column align-end">
+        <div v-if="isSolved" class="text-success">Solved!</div>
+        <SolutionButton :path="path" />
+      </div>
     </HeadingAction>
     <Description />
-    <hr style="width: 75%" />
+    <hr />
 
     <v-responsive max-width="512" class="mx-auto">
       <v-form v-model="isValid" @submit.prevent="checkFlag">
@@ -93,7 +97,7 @@ function checkFlag() {
       </v-form>
     </v-responsive>
 
-    <hr style="margin-left: auto; width: 75%" />
+    <hr class="ml-auto" />
     <v-card
       v-if="CtfComponent || htmlUrl?.data || imageUrl?.data"
       class="d-flex align-center mx-2 my-4 overflow-x-auto"
@@ -115,6 +119,20 @@ function checkFlag() {
 </template>
 
 <style scoped>
+.text-success {
+  margin: -0.9em 0.75em -0.1em 0;
+  font-size: 0.75rem;
+  line-height: 1;
+}
+
+hr {
+  width: 75%;
+}
+
+.flag-input :deep(input) {
+  font-family: monospace;
+}
+
 .v-card::before {
   display: block;
   float: left;
@@ -146,9 +164,5 @@ function checkFlag() {
     padding: revert;
     text-align: justify;
   }
-}
-
-.flag-input input {
-  font-family: monospace;
 }
 </style>
