@@ -13,7 +13,7 @@ export default defineConfig({
         const defaultRender =
           md.renderer.rules.link_open ?? ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options));
         md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-          tokens[idx].attrSet('target', '_blank');  // add target='_blank' to all links
+          tokens[idx].attrSet('target', '_blank'); // add target='_blank' to all links
           return defaultRender(tokens, idx, options, env, self);
         };
       },
@@ -21,10 +21,11 @@ export default defineConfig({
     vuetify(),
     vueJsx(),
   ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
+  base: '/cStDf',
+  build: {
+    rollupOptions: {
+      output: { chunkFileNames: '[hash:6].js', assetFileNames: '[hash:1].[ext]', entryFileNames: '[hash:6].js' },
     },
   },
-  base: '/cStDf',
 });
