@@ -4,7 +4,8 @@ const props = defineProps<{ board: string }>();
 
 <template>
   <v-container class="pa-0 w-auto">
-    <v-row>
+    <v-row no-gutters>
+      <v-col cols="auto"><slot name="left" /></v-col>
       <v-col>
         <table>
           <tr v-for="row in 9" :key="row">
@@ -24,6 +25,7 @@ const props = defineProps<{ board: string }>();
           </tr>
         </table>
       </v-col>
+      <v-col cols="auto"><slot name="right" /></v-col>
     </v-row>
     <v-row no-gutters align="center">
       <v-col>Please do not cheat.</v-col>

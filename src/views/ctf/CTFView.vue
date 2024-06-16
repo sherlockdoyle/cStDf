@@ -4,8 +4,9 @@ import LoadingComponent from '@/components/LoadingComponent.vue';
 import ctfs from '@/ctfs/all-ctfs';
 import { addSolved, getAllSolved } from '@/storage/solved';
 import SparkMD5 from 'spark-md5';
-import { ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
+import DependencyList from './DependencyList.vue';
 import SolutionButton from './SolutionButton.vue';
 import SolvedAnimationOverlay from './SolvedAnimationOverlay.vue';
 import useAsyncLoader from './async-loader';
@@ -13,6 +14,10 @@ import useAsyncLoader from './async-loader';
 const path = useRoute().params.path as string;
 const ctf = ctfs[path];
 const isSolved = getAllSolved().has(path);
+
+const { title } = document;
+onMounted(() => (document.title = `${ctf.name} - ${title}`));
+onBeforeUnmount(() => (document.title = title));
 
 const details = useAsyncLoader(ctf.details, path);
 const { Description, CtfComponent } = ctf;
@@ -61,6 +66,7 @@ function checkFlag() {
         <SolutionButton :path="path" />
       </div>
     </HeadingAction>
+    <DependencyList v-if="details.data.dependencies?.length" :dependencies="details.data.dependencies" />
     <Description />
     <hr />
 

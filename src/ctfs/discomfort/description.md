@@ -1,0 +1,3 @@
+The noise is really bothering me. It's making me feel uneasy. I feel like these Delightful Tunes are Making Fun of my sanity, playing with my mind. I've begun to see things that aren't there. I imagine tigers dancing, almost as if these Dancing Tigers Might Fly and leap into the sky. Numbers are floating around in my head, and Daring Thoughts are Merging Fearlessly. If only I could sleep, maybe I'd have peaceful dreams - Dreams That Mean Freedom - where I could escape all this.
+
+I've got an idea to keep my mind busy - maybe staying awake all night will help. That's it! Last time I did that, I learned how to solve those Sudoku puzzles. This one's tricky though, like it's missing pieces. Where are the numbers gone to?

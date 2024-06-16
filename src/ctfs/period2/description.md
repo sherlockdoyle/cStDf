@@ -1,5 +1,3 @@
-**Note:** You should probably solve [Period](#/ctf/period) first.
-
 Perodi's nights were filled with terror. What started long ago, didn't stop. It came back, every month, like clockwork.
 
 In her dreams, she will see a man. He would always be there, standing with a knife. The sight of him brought her pain. But the dreams didn't always play out the same way. Sometimes, things were flipped around. The man would appear from a corner, pull out his knife from her stomach, and then leave.
