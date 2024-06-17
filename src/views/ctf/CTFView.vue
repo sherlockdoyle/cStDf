@@ -206,5 +206,10 @@ hr {
     padding: revert;
     text-align: justify;
   }
+  pre {
+    text-align: left;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
 }
 </style>
