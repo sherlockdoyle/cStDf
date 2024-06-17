@@ -8,7 +8,7 @@ if (!dirPath) {
 }
 
 const fullPath = path.join('./src/ctfs', dirPath);
-const lastPart = dirPath
+const name = dirPath
   .split('/')
   .pop()!
   .replace(/-/g, ' ')
@@ -16,7 +16,7 @@ const lastPart = dirPath
   .replace(/\w\S*/g, txt => txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase());
 
 fs.mkdirSync(fullPath, { recursive: true });
-fs.writeFileSync(path.join(fullPath, 'name'), lastPart);
+fs.writeFileSync(path.join(fullPath, 'name'), name);
 fs.writeFileSync(path.join(fullPath, 'description.md'), '');
 fs.writeFileSync(
   path.join(fullPath, 'details.json'),

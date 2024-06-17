@@ -6,6 +6,6 @@ The objective is to locate a specific string of text, referred to as "flags", wh
 cStDf{...}
 ```
 
-A flag can only include lowercase and uppercase letters, numbers, and underscores. A flag will contain at least one character and is case-sensitive.
+A flag can only include **lowercase and uppercase letters, numbers, and underscores**. A flag will contain at least one character and is case-sensitive.
 
 For this introductory challenge, simply input the flag from below and click on Check.

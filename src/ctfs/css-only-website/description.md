@@ -1,0 +1,3 @@
+During my academic years, one of our assignments from our instructor was to build a website using CSS. Like everyone else in the class, I understood that this meant we should create a website using HTML and style it with CSS. However, I guess you could say I have a bit of an unconventional way of thinking, and the assignment instructions seemed a little ambiguous. So, I decided to build the entire website using only CSS, with minimal HTML.
+
+I suspect the instructor did not check the source code and simply gave full marks. Nonetheless, I have recreated one of these websites here. If you can figure out the hidden flag, well done! You may want to open the website in a new tab and then use the "view source" function in your browser.
