@@ -211,5 +211,8 @@ hr {
     white-space: pre-wrap;
     word-break: break-word;
   }
+  big {
+    line-height: 1; /* Don't shift the text */
+  }
 }
 </style>
