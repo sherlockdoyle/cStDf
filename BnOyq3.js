@@ -1,0 +1,1 @@
+import{_ as e,o as a,c,b as s,F as t,a as o}from"./COF964.js";const n={},r=o("code",null,"cStDf{ThIs_Is_ThE_fLaG}",-1);function _(f,l){return a(),c(t,null,[s("The flag is: "),r],64)}const h=e(n,[["render",_]]);export{h as default};

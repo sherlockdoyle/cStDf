@@ -1,0 +1,3 @@
+import{o as e,c as s,a as t}from"./COF964.js";const n={class:"markdown-body"},c=t("p",null,"In some instances, the format of the flag may be correct, but the case is incorrect. In such situations, you should adjust the case accordingly. This is essentially a continuation of the previous tutorial. For instance, if the flag is",-1),a=t("pre",null,[t("code",null,`CSTDF{FLAG}
+`)],-1),i=t("p",null,"you should modify it to",-1),r=t("pre",null,[t("code",null,`cStDf{FLAG}
+`)],-1),l=[c,a,i,r],p={__name:"description",setup(u,{expose:o}){return o({frontmatter:{}}),(d,h)=>(e(),s("div",n,l))}};export{p as default};
