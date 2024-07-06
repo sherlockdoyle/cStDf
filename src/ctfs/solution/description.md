@@ -1,0 +1,5 @@
+Some puzzles don't have any answer at all. We're lucky because this puzzle isn't like that. It has an answer. Most of the time, when you do a puzzle, you're trying to figure out the right answer. That's what you're supposed to do. But there are some puzzles that are different. With these puzzles, you're actually trying to find the wrong answer instead of the right one. Some people have a special name for these kinds of puzzles. They call them anti-puzzles.
+
+But wait, there's another type of puzzle too! These are puzzles where the way to solve them is to go and look up the solution. I came up with my own name for these. I like to call them meta puzzles. I'm not sure if that's the name everyone uses, but it's the name I decided to use for them.
+
+Oh, and there's one more kind of puzzle I want to tell you about. These are puzzles that have more than one right answer. You could call these Schrödinger's puzzles. But don't worry, the puzzle we're talking about right now isn't one of those either! For now, let's just focus on those meta puzzles.
