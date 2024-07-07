@@ -25,7 +25,10 @@ const details = import.meta.glob<boolean, string, Details>('@/ctfs/**/details.js
 const descriptions = import.meta.glob<boolean, string, Component>('@/ctfs/**/description.md', { import: 'default' });
 const ctfComponents = import.meta.glob<boolean, string, Component>('@/ctfs/**/CTF.vue', { import: 'default' });
 const ctfHtmls = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.html', { query: 'url', import: 'default' });
-const ctfImages = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.png', { query: 'url', import: 'default' });
+const ctfImages = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.{png,svg}', {
+  query: 'url',
+  import: 'default',
+});
 const ctfPdfs = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.pdf', { query: 'url', import: 'default' });
 const ctfWavs = import.meta.glob<boolean, string, string>('@/ctfs/**/CTF.wav', { query: 'url', import: 'default' });
 
@@ -42,7 +45,7 @@ for (const namePath of Object.keys(names)) {
     Description: defineAsyncComponent({ loader: descriptions[pathPrefix + 'description.md'], loadingComponent }),
     CtfComponent: ctfComponent && defineAsyncComponent({ loader: ctfComponent, loadingComponent }),
     htmlUrl: ctfHtmls[pathPrefix + 'CTF.html'],
-    imageUrl: ctfImages[pathPrefix + 'CTF.png'],
+    imageUrl: ctfImages[pathPrefix + 'CTF.png'] ?? ctfImages[pathPrefix + 'CTF.svg'],
     pdfUrl: ctfPdfs[pathPrefix + 'CTF.pdf'],
     wavUrl: ctfWavs[pathPrefix + 'CTF.wav'],
   };

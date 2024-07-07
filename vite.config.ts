@@ -25,7 +25,7 @@ export default defineConfig({
   base: '/cStDf',
   build: {
     rollupOptions: {
-      output: { chunkFileNames: '[hash:6].js', assetFileNames: '[hash:1].[ext]', entryFileNames: '[hash:6].js' },
+      output: { chunkFileNames: '[hash:7].js', assetFileNames: '[hash:1].[ext]', entryFileNames: '[hash:6].js' },
     },
   },
 });
