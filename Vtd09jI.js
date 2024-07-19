@@ -1,0 +1,1 @@
+import{_ as e,o as c,c as s,d as t,F as a,b as o}from"./p5nfXl.js";const n={},r=o("code",null,"cStDf{ThIs_Is_ThE_fLaG}",-1);function _(f,l){return c(),s(a,null,[t("The flag is: "),r],64)}const h=e(n,[["render",_]]);export{h as default};
