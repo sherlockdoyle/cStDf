@@ -26,24 +26,35 @@ const showHint = ref(false);
 
       <v-card-text>
         <p>
-          Welcome to the world of <code>cStDf</code>! It's a treasure trove of puzzles, much like a Capture The Flag
-          (CTF) game. Your mission, should you choose to accept it, is to hunt for a hidden string, known as a flag.
-          This flag could be tucked away in a website, a puzzle, a file, or hidden in a code waiting to be deciphered.
+          Get ready for a fun puzzle game called <strong>cStDf</strong> where you'll use your brain to hunt for hidden
+          treasures. Each puzzle is like a mini-adventure with clues that will lead you to a secret word or phrase. We
+          call this the <em>"flag"</em>.
         </p>
         <p>
-          Think of this as a game, a playground of random ideas that I've had on how to hide things. It's all in your
-          browser! No need to worry about storage or servers. Some of my other projects might give you a leg up in
-          solving these challenges, but then again, they might not. Feel free to use any tools you have, but remember,
-          there's no need to use the devtools/inspect element unless it's mentioned.
+          Some puzzles might come with files where the flag is hiding. It could be tucked away in a picture, hidden in
+          some text, encoded in a website, or even buried in the file itself. You'll need to be clever to find it!
+        </p>
+        <p>
+          I've used lots of cool ideas I've had about hiding things to make these puzzles tricky and fun. And here's a
+          hint: some of my other projects might give you tools or tricks to help solve certain puzzles. So keep your
+          eyes open and your mind sharp!
         </p>
         <p>
           The only rule here is to play nice and avoid cheating. After all, the real joy is in cracking the puzzles by
-          yourself. So, dive in and have fun!
+          yourself.
         </p>
+        <p><strong>Are you ready to start the hunt and find all the flags in cStDf? Let's go!</strong></p>
 
         <v-alert icon="$info" color="info" variant="tonal">
           Except the first four tutorials, the puzzles are in no particular order.
         </v-alert>
+
+        <p>
+          <small>
+            cStDf is completely client-side. There's no server, tracking, analytics, or any such things. Your gameplay
+            is private and local to your device.
+          </small>
+        </p>
 
         <p v-if="showHint">
           Usually, the name or description of the puzzle will drop a hint or two.

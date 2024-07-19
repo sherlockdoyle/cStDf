@@ -22,7 +22,7 @@ The puzzles are all located in the [`src/ctfs`](src/ctfs) directory. Each puzzle
 
 You can easily create these files by running `npm run create-ctf <folder-name>`.
 
-### `CTF.vue`, `CTF.png`, `CTF.html`, `CTF.pdf`, `CTF.wav`
+### `CTF.vue`, `CTF.png`, `CTF.svg`, `CTF.html`, `CTF.pdf`, `CTF.wav`
 
 You can create one of the above files for the puzzle. It could be a *Vue component*, an *image*, a *HTML file*, a *PDF file*, or a *WAV file*. If there are multiple files present, the puzzles follow the order specified — meaning the first file gets rendered.
 
