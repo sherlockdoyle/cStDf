@@ -1,0 +1,1 @@
+import{o as t,c as o,H as s}from"./dnkJVo.js";const r={class:"markdown-body"},a=s("p",null,"This is a sort of a more traditinal CTF. The objective, break the RSA encryption.",-1),n=[a],m={__name:"description",setup(c,{expose:e}){return e({frontmatter:{}}),(_,d)=>(t(),o("div",r,n))}};export{m as default};
