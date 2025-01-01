@@ -13,7 +13,7 @@ interface CTF {
   htmlUrl?: () => Promise<string>;
   imageUrl?: () => Promise<string>;
   pdfUrl?: () => Promise<string>;
-  wavUrl?: () => Promise<string>;
+  audioUrl?: () => Promise<string>;
 }
 
 const names = import.meta.glob<true, string, string>('@/ctfs/**/name', {
@@ -47,7 +47,7 @@ for (const namePath of Object.keys(names)) {
     htmlUrl: ctfHtmls[pathPrefix + 'CTF.html'],
     imageUrl: ctfImages[pathPrefix + 'CTF.png'] ?? ctfImages[pathPrefix + 'CTF.svg'],
     pdfUrl: ctfPdfs[pathPrefix + 'CTF.pdf'],
-    wavUrl: ctfWavs[pathPrefix + 'CTF.wav'],
+    audioUrl: ctfWavs[pathPrefix + 'CTF.wav'],
   };
 }
 

@@ -24,7 +24,7 @@ const { Description, CtfComponent } = ctf;
 const htmlUrl = ctf.htmlUrl && useAsyncLoader(ctf.htmlUrl, path);
 const imageUrl = ctf.imageUrl && useAsyncLoader(ctf.imageUrl, path);
 const pdfUrl = ctf.pdfUrl && useAsyncLoader(ctf.pdfUrl, path);
-const wavUrl = ctf.wavUrl && useAsyncLoader(ctf.wavUrl, path);
+const audioUrl = ctf.audioUrl && useAsyncLoader(ctf.audioUrl, path);
 
 const flagInput = ref(''),
   isValid = ref(false),
@@ -107,7 +107,7 @@ function checkFlag() {
 
     <hr class="ml-auto" />
     <v-card
-      v-if="CtfComponent || htmlUrl?.data || imageUrl?.data || pdfUrl?.data || wavUrl?.data"
+      v-if="CtfComponent || htmlUrl?.data || imageUrl?.data || pdfUrl?.data || audioUrl?.data"
       class="d-flex align-center mx-2 my-4 overflow-x-auto"
     >
       <v-card-item v-if="CtfComponent" class="d-block flex-0-1 mx-auto">
@@ -116,7 +116,7 @@ function checkFlag() {
 
       <v-img v-else-if="imageUrl?.data" :src="imageUrl.data" />
 
-      <div v-else-if="htmlUrl?.data || pdfUrl?.data || wavUrl?.data" class="container">
+      <div v-else-if="htmlUrl?.data || pdfUrl?.data || audioUrl?.data" class="container">
         <template v-if="htmlUrl?.data">
           <iframe :src="htmlUrl.data" frameborder="0" width="100%" height="100%" />
           <v-btn icon="mdi-open-in-new" title="Open website in new tab" :href="htmlUrl.data" target="_blank" />
@@ -128,9 +128,9 @@ function checkFlag() {
           <v-btn icon="mdi-download" title="Download PDF" :href="pdfUrl.data" target="_blank" />
         </template>
 
-        <template v-else-if="wavUrl?.data">
-          <audio :src="wavUrl.data" controls />
-          <v-btn icon="mdi-download" title="Download audio" :href="wavUrl.data" target="_blank" />
+        <template v-else-if="audioUrl?.data">
+          <audio :src="audioUrl.data" controls />
+          <v-btn icon="mdi-download" title="Download audio" :href="audioUrl.data" target="_blank" />
         </template>
       </div>
     </v-card>

@@ -7,7 +7,9 @@
   "htmlWhitespaceSensitivity": "css",
   "insertPragma": false,
   "jsxSingleQuote": true,
-  "plugins": ["prettier-plugin-css-order", "prettier-plugin-tailwindcss"],
+  "plugins": [
+    "prettier-plugin-css-order"
+  ],
   "printWidth": 120,
   "proseWrap": "preserve",
   "quoteProps": "as-needed",

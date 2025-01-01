@@ -1,12 +1,14 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import { fileURLToPath, URL } from 'node:url';
+import url from 'node:url';
 import markdown from 'unplugin-vue-markdown/vite';
 import { defineConfig } from 'vite';
 import vuetify from 'vite-plugin-vuetify';
+import createCtfMap from './scripts/create-ctf-map';
 
 export default defineConfig({
   plugins: [
+    createCtfMap,
     vue({ include: [/\.vue$/, /\.md$/] }),
     markdown({
       markdownItSetup: md => {
@@ -21,7 +23,7 @@ export default defineConfig({
     vuetify(),
     vueJsx(),
   ],
-  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
+  resolve: { alias: { '@': url.fileURLToPath(new URL('./src', import.meta.url)) } },
   base: '/cStDf',
   build: {
     rollupOptions: {
