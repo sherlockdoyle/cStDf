@@ -1,5 +1,5 @@
 import { promises as fs } from 'fs';
-import glob from 'glob';
+import { glob } from 'glob';
 
 async function notExists(path: string) {
   try {
@@ -34,22 +34,15 @@ function rewrite(content: string) {
   return lines.join('\n\n').split('').reverse().join('');
 }
 
-glob('src/ctfs/**/Sol.md', async (err, paths) => {
-  if (err) {
-    console.error('Error while finding files:', err);
-    return;
-  }
-
-  for (const path of paths) {
-    try {
-      const newPath = path.replace('Sol.md', 'solution.md');
-      if (await notExists(newPath) || (await fs.lstat(path)).mtimeMs > (await fs.lstat(newPath)).mtimeMs) {
-        console.log(`Processing file ${path}...`);
-        const content = await fs.readFile(path, 'utf-8');
-        await fs.writeFile(newPath, rewrite(content), 'utf-8');
-      } else console.log(`Skipped file ${path}.`);
-    } catch (err) {
-      console.error(`Error processing file ${path}:`, err);
-    }
+glob.sync('src/ctfs/**/Sol.md').forEach(async path => {
+  try {
+    const newPath = path.replace('Sol.md', 'solution.md');
+    if ((await notExists(newPath)) || (await fs.lstat(path)).mtimeMs > (await fs.lstat(newPath)).mtimeMs) {
+      console.log(`Processing file ${path}...`);
+      const content = await fs.readFile(path, 'utf-8');
+      await fs.writeFile(newPath, rewrite(content), 'utf-8');
+    } else console.log(`Skipped file ${path}.`);
+  } catch (err) {
+    console.error(`Error processing file ${path}:`, err);
   }
 });

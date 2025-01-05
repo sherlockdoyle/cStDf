@@ -1,7 +1,7 @@
-import glob from 'glob';
+import { glob } from 'glob';
 import fs from 'node:fs';
 import path from 'node:path';
-import { Plugin } from 'vite';
+import { type Plugin } from 'vite';
 
 const CTF_PATH = './src/ctfs';
 
