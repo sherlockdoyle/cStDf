@@ -4,6 +4,7 @@ import { defineAsyncComponent, type Component } from 'vue';
 export interface Details {
   flagMD5: string;
   dependencies?: string[];
+  summary: string;
 }
 interface CTF {
   name: string;

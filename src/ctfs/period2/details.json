@@ -1,4 +1,5 @@
 {
   "flagMD5": "a82bfb1a209d4c257b381b42cdf2e95a",
-  "dependencies": ["period"]
+  "dependencies": ["period"],
+  "summary": "The man was no longer the one standing in the corner."
 }

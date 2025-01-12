@@ -28,13 +28,17 @@ You can create one of the above files for the puzzle. It could be a *Vue compone
 
 ### `details.json`
 
-The `details.json` file is a JSON file that includes the MD5 hash of the flag. It looks something like this:
+The `details.json` file includes the MD5 hash of the flag, path to any dependencies, and the summary of the puzzle. Dependencies are puzzles that need to be solved to make sense of the current puzzle. It looks something like this:
 
 ```json
 {
-  "flagMD5": "..."
+  "flagMD5": "...",
+  "dependencies": ["path/to/another/puzzle"],
+  "summary": "...",
 }
 ```
+
+You can either create the summary from the `description.md` file by running `npm run create-summary`, or add it manually.
 
 ### `Sol.md`
 

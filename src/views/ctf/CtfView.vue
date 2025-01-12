@@ -4,20 +4,17 @@ import LoadingComponent from '@/components/LoadingComponent.vue';
 import ctfs from '@/ctfs/all-ctfs';
 import { addSolved, getAllSolved } from '@/storage/solved';
 import SparkMD5 from 'spark-md5';
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import DependencyList from './DependencyList.vue';
 import SolutionButton from './SolutionButton.vue';
 import SolvedAnimationOverlay from './SolvedAnimationOverlay.vue';
 import useAsyncLoader from './async-loader';
+import useMetaTags from './meta-tags';
 
 const path = useRoute().params.path as string;
 const ctf = ctfs[path];
 const isSolved = getAllSolved().has(path);
-
-const { title } = document;
-onMounted(() => (document.title = `${ctf.name} - ${title}`));
-onBeforeUnmount(() => (document.title = title));
 
 const details = useAsyncLoader(ctf.details, path);
 const { Description, CtfComponent } = ctf;
@@ -25,6 +22,9 @@ const htmlUrl = ctf.htmlUrl && useAsyncLoader(ctf.htmlUrl, path);
 const imageUrl = ctf.imageUrl && useAsyncLoader(ctf.imageUrl, path);
 const pdfUrl = ctf.pdfUrl && useAsyncLoader(ctf.pdfUrl, path);
 const audioUrl = ctf.audioUrl && useAsyncLoader(ctf.audioUrl, path);
+
+const descUpdater = useMetaTags(ctf.name, path);
+watch(details, details => descUpdater(details.data?.summary ?? null));
 
 const flagInput = ref(''),
   isValid = ref(false),
@@ -108,7 +108,7 @@ function checkFlag() {
     <hr class="ml-auto" />
     <v-card
       v-if="CtfComponent || htmlUrl?.data || imageUrl?.data || pdfUrl?.data || audioUrl?.data"
-      class="d-flex align-center mx-2 my-4 overflow-x-auto"
+      class="d-flex align-center mx-sm-0 mx-2 my-4 overflow-x-auto"
     >
       <v-card-item v-if="CtfComponent" class="d-block flex-0-1 mx-auto">
         <CtfComponent />

@@ -12,6 +12,7 @@
     "lint": "eslint . --fix",
     "format": "prettier --write src/",
     "create-ctf": "tsx ./scripts/create-ctf.ts $1",
+    "create-summary": "tsx ./scripts/create-summary.ts",
     "sol-rewrite": "tsx ./scripts/sol-rewrite.ts"
   },
   "dependencies": {
@@ -33,7 +34,7 @@
     "@vue/tsconfig": "^0.7.0",
     "eslint": "^9.17.0",
     "eslint-plugin-vue": "^9.32.0",
-    "glob": "^11.0.0",
+    "node-summarizer": "^1.0.7",
     "npm-run-all2": "^7.0.2",
     "prettier": "^3.4.2",
     "prettier-plugin-css-order": "^2.1.2",
