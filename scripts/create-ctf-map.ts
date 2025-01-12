@@ -1,7 +1,6 @@
-import glob from 'glob';
 import fs from 'node:fs';
 import path from 'node:path';
-import { Plugin } from 'vite';
+import { type Plugin } from 'vite';
 
 const CTF_PATH = './src/ctfs';
 
@@ -38,7 +37,7 @@ interface CTF {
 export default {`,
   ];
 
-  glob.sync(CTF_PATH + '/**/name').forEach(namePath => {
+  fs.globSync(CTF_PATH + '/**/name').forEach(namePath => {
     const dirPath = path.dirname(namePath);
     fileContent.push(`  ${JSON.stringify(path.relative(CTF_PATH, dirPath))}: {`);
     fileContent.push(`    name: ${JSON.stringify(fs.readFileSync(namePath, 'utf-8'))},`);

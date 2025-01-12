@@ -1,4 +1,4 @@
-import CTFView from '@/views/ctf/CTFView.vue';
+import CTFView from '@/views/ctf/CtfView.vue';
 import MainView from '@/views/main/MainView.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 

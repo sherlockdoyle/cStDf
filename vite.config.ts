@@ -1,10 +1,20 @@
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import url from 'node:url';
+import { fileURLToPath, URL } from 'node:url';
+import { PreRenderedAsset, PreRenderedChunk } from 'rollup';
 import markdown from 'unplugin-vue-markdown/vite';
 import { defineConfig } from 'vite';
 import vuetify from 'vite-plugin-vuetify';
 import createCtfMap from './scripts/create-ctf-map';
+
+let id = 0;
+const modules: Record<string, string> = {};
+function getFileName(chunkInfo: PreRenderedChunk | PreRenderedAsset): string {
+  const isChunk = chunkInfo.type === 'chunk';
+  const key = isChunk ? (chunkInfo.facadeModuleId ?? chunkInfo.name) : chunkInfo.source.toString();
+  if (!(key in modules)) modules[key] = (id++).toString(36);
+  return `${modules[key]}.${isChunk ? 'js' : '[ext]'}`;
+}
 
 export default defineConfig({
   plugins: [
@@ -23,11 +33,11 @@ export default defineConfig({
     vuetify(),
     vueJsx(),
   ],
-  resolve: { alias: { '@': url.fileURLToPath(new URL('./src', import.meta.url)) } },
+  resolve: { alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) } },
   base: '/cStDf',
   build: {
     rollupOptions: {
-      output: { chunkFileNames: '[hash:7].js', assetFileNames: '[hash:1].[ext]', entryFileNames: '[hash:6].js' },
+      output: { chunkFileNames: getFileName, assetFileNames: getFileName, entryFileNames: getFileName },
     },
   },
 });

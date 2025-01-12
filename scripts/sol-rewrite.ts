@@ -1,5 +1,4 @@
-import { promises as fs } from 'fs';
-import glob from 'glob';
+import { promises as fs, glob } from 'fs';
 
 async function notExists(path: string) {
   try {
@@ -37,13 +36,13 @@ function rewrite(content: string) {
 glob('src/ctfs/**/Sol.md', async (err, paths) => {
   if (err) {
     console.error('Error while finding files:', err);
-    return;
+    process.exit(1);
   }
 
   for (const path of paths) {
     try {
       const newPath = path.replace('Sol.md', 'solution.md');
-      if (await notExists(newPath) || (await fs.lstat(path)).mtimeMs > (await fs.lstat(newPath)).mtimeMs) {
+      if ((await notExists(newPath)) || (await fs.lstat(path)).mtimeMs > (await fs.lstat(newPath)).mtimeMs) {
         console.log(`Processing file ${path}...`);
         const content = await fs.readFile(path, 'utf-8');
         await fs.writeFile(newPath, rewrite(content), 'utf-8');
