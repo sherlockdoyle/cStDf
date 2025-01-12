@@ -1,0 +1,1 @@
+const e="a82bfb1a209d4c257b381b42cdf2e95a",n=["period"],a="The man was no longer the one standing in the corner.",o={flagMD5:e,dependencies:n,summary:a};export{o as default,n as dependencies,e as flagMD5,a as summary};

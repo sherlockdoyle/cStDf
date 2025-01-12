@@ -1,0 +1,1 @@
+import{_ as s,o as t,c as o,f as r,b as a,F as n}from"./d.js";const f={};function c(l,e){return t(),o(n,null,[e[0]||(e[0]=r("The flag is: ")),e[1]||(e[1]=a("code",null,"cStDf{ThIs_Is_ThE_fLaG}",-1))],64)}const d=s(f,[["render",c]]);export{d as default};

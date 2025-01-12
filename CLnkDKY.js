@@ -1,1 +1,0 @@
-import{_ as c,o as e,c as a,F as t,W as r,H as n}from"./dnkJVo.js";const o={},_={class:"q"};function d(i,l){return e(),a("div",_,[(e(),a(t,null,r(21*21,s=>n("div",{key:s})),64))])}const m=c(o,[["render",d],["__scopeId","data-v-40a980ca"]]);export{m as default};
