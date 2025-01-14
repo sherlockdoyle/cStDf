@@ -38,6 +38,8 @@ The `details.json` file includes the MD5 hash of the flag, path to any dependenc
 }
 ```
 
+You can create the MD5 hash of the flag by running `echo -n "cStDf{flag}" | md5sum`.
+
 You can either create the summary from the `description.md` file by running `npm run create-summary`, or add it manually.
 
 ### `Sol.md`
