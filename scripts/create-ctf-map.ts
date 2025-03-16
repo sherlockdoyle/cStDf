@@ -1,42 +1,26 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { type Plugin } from 'vite';
+import { type CtfType } from '../src/ctfs/ctf-type';
 
 const CTF_PATH = './src/ctfs';
 
-type CtfLazyFields = 'details' | 'Description' | 'CtfComponent' | 'htmlUrl' | 'imageUrl' | 'pdfUrl' | 'audioUrl';
-const fileExtToField: Record<string, CtfLazyFields> = {
-  vue: 'CtfComponent',
-  html: 'htmlUrl',
-  png: 'imageUrl',
-  svg: 'imageUrl',
-  pdf: 'pdfUrl',
-  wav: 'audioUrl',
+const fileExtToType: Record<string, CtfType> = {
+  vue: 'vue',
+  png: 'image',
+  svg: 'image',
+  html: 'html',
+  pdf: 'pdf',
+  wav: 'audio',
 };
 
-function createMapFileContent(): string {
-  const fileContent = [
-    `import loadingComponent from '@/components/LoadingComponent.vue';
-import { defineAsyncComponent, type Component } from 'vue';
-
-export interface Details {
-  flagMD5: string;
-  dependencies?: string[];
-  summary: string;
-}
-interface CTF {
-  name: string;
-  details: () => Promise<Details>;
-  Description: Component;
-  CtfComponent?: Component;
-  htmlUrl?: () => Promise<string>;
-  imageUrl?: () => Promise<string>;
-  pdfUrl?: () => Promise<string>;
-  audioUrl?: () => Promise<string>;
+function pathToComponentImport(path: string): string {
+  return `: defineAsyncComponent({ loader: () => import(${JSON.stringify(path)}), loadingComponent }),`;
 }
 
-export default {`,
-  ];
+function createMapFileContent(origFilePath: string): string {
+  const originalFileContent = fs.readFileSync(origFilePath, 'utf-8');
+  const fileContent = [originalFileContent.split('// END OF TYPES MARKER')[0], 'export default {'];
 
   fs.globSync(CTF_PATH + '/**/name').forEach(namePath => {
     const dirPath = path.dirname(namePath);
@@ -44,24 +28,24 @@ export default {`,
     fileContent.push(`    name: ${JSON.stringify(fs.readFileSync(namePath, 'utf-8'))},`);
 
     fs.readdirSync(dirPath).forEach(fileName => {
-      let field: CtfLazyFields,
-        url = false;
-      if (fileName === 'details.json') field = 'details';
-      else if (fileName === 'description.md') field = 'Description';
-      else if (fileName.startsWith('CTF.')) {
-        const ext = path.extname(fileName).substring(1);
-        field = fileExtToField[ext];
-        url = ext !== 'vue';
-      } else return;
+      if (fileName === 'name') return;
 
-      let fullPath = path.join(dirPath, fileName).replace('src', '@');
-      if (url) fullPath += '?url';
-      let importStatement = `() => import(${JSON.stringify(fullPath)})`;
-      if (url) importStatement += '.then(m => m.default)';
-      if (field === 'Description' || field === 'CtfComponent')
-        importStatement = `defineAsyncComponent({ loader: ${importStatement}, loadingComponent })`;
+      const fullPath = path.join(dirPath, fileName).replace('src', '@');
+      if (fileName === 'details.json') fileContent.push(`    details: () => import(${JSON.stringify(fullPath)}),`);
 
-      fileContent.push(`    ${field}: ${importStatement},`);
+      if (fileName === 'description.md') fileContent.push(`    Description${pathToComponentImport(fullPath)}`);
+
+      if (!fileName.startsWith('CTF.')) return;
+
+      const ext = path.extname(fileName).substring(1),
+        type = fileExtToType[ext];
+      if (!type) throw new Error(`Unknown file extension ${ext}`);
+
+      fileContent.push(`    content: {
+      type: '${type}',`);
+      if (type === 'vue') fileContent.push(`      component${pathToComponentImport(fullPath)}`);
+      else fileContent.push(`      url: () => import(${JSON.stringify(fullPath + '?url')}).then(m => m.default),`);
+      fileContent.push(`    },`);
     });
 
     fileContent.push(`  },`);
@@ -76,6 +60,6 @@ export default {
   enforce: 'pre',
   apply: 'build',
   load(id) {
-    if (id.endsWith('all-ctfs.ts')) return createMapFileContent();
+    if (id.endsWith('all-ctfs.ts')) return createMapFileContent(id);
   },
 } satisfies Plugin;

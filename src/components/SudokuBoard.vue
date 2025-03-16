@@ -3,7 +3,7 @@ const props = defineProps<{ board: string }>();
 </script>
 
 <template>
-  <v-container class="pa-0 w-auto">
+  <v-container class="w-auto">
     <v-row no-gutters>
       <v-col cols="auto"><slot name="left" /></v-col>
       <v-col>

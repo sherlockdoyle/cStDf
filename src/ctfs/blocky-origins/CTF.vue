@@ -78,136 +78,146 @@ watch([p, q, m], () => {
 </script>
 
 <template>
-  <h3>RSA Encryption Demo</h3>
+  <v-container>
+    <h3>RSA Encryption Demo</h3>
 
-  <h4>Introduction to RSA</h4>
-  <p>
-    RSA (Rivest-Shamir-Adleman) is one of the first public-key cryptosystems and is widely used for secure data
-    transmission. It's an asymmetric cryptographic algorithm, meaning it uses two different keys: a public key for
-    encryption and a private key for decryption.
-  </p>
+    <h4>Introduction to RSA</h4>
+    <p>
+      RSA (Rivest-Shamir-Adleman) is one of the first public-key cryptosystems and is widely used for secure data
+      transmission. It's an asymmetric cryptographic algorithm, meaning it uses two different keys: a public key for
+      encryption and a private key for decryption.
+    </p>
 
-  <h4>Choosing Prime Numbers</h4>
-  <p>The process starts by selecting two distinct prime numbers, usually called <em>p</em> and <em>q</em>.</p>
-  <v-textarea
-    rows="1"
-    auto-grow
-    label="Prime p"
-    inputmode="numeric"
-    :rules="[...primeRules, (v: string) => v !== q || 'Cannot be equal to q']"
-    v-model="p"
-  />
-  <v-textarea
-    rows="1"
-    auto-grow
-    label="Prime q"
-    inputmode="numeric"
-    :rules="[...primeRules, (v: string) => v !== p || 'Cannot be equal to p']"
-    v-model="q"
-  />
-  <ul>
-    <li>In our case, no checks are performed to ensure that <em>p</em> and <em>q</em> are prime.</li>
-    <li>Also, in practice, these primes are very large, typically 2048 bits or more.</li>
-  </ul>
-  <p>
-    <a href="https://en.wikipedia.org/wiki/Prime_number" target="_blank">Learn more about prime numbers</a>
-  </p>
+    <h4>Choosing Prime Numbers</h4>
+    <p>The process starts by selecting two distinct prime numbers, usually called <em>p</em> and <em>q</em>.</p>
+    <v-textarea
+      rows="1"
+      auto-grow
+      label="Prime p"
+      inputmode="numeric"
+      :rules="[...primeRules, (v: string) => v !== q || 'Cannot be equal to q']"
+      v-model="p"
+    />
+    <v-textarea
+      rows="1"
+      auto-grow
+      label="Prime q"
+      inputmode="numeric"
+      :rules="[...primeRules, (v: string) => v !== p || 'Cannot be equal to p']"
+      v-model="q"
+    />
+    <ul>
+      <li>In our case, no checks are performed to ensure that <em>p</em> and <em>q</em> are prime.</li>
+      <li>Also, in practice, these primes are very large, typically 2048 bits or more.</li>
+    </ul>
+    <p>
+      <a href="https://en.wikipedia.org/wiki/Prime_number" target="_blank">Learn more about prime numbers</a>
+    </p>
 
-  <h4>Calculating n (the modulus)</h4>
-  <p><em>n</em> is the product of <em>p</em> and <em>q</em>: <em>n = p * q</em></p>
-  <v-textarea rows="1" auto-grow label="n (p*q)" readonly :model-value="n" />
-  <ul>
-    <li>This value is used in both the public and private keys.</li>
-    <li>It's part of the encryption and decryption processes.</li>
-  </ul>
+    <h4>Calculating n (the modulus)</h4>
+    <p><em>n</em> is the product of <em>p</em> and <em>q</em>: <em>n = p * q</em></p>
+    <v-textarea rows="1" auto-grow label="n (p*q)" readonly :model-value="n" />
+    <ul>
+      <li>This value is used in both the public and private keys.</li>
+      <li>It's part of the encryption and decryption processes.</li>
+    </ul>
 
-  <h4>Calculating φ(n) (Euler's totient function)</h4>
-  <p><em>φ(n) = (p-1) * (q-1)</em></p>
-  <v-textarea rows="1" auto-grow label="φ(n)" readonly :model-value="phi" />
-  <ul>
-    <li>This step is crucial for generating the keys.</li>
-    <li>It represents the count of numbers less than <em>n</em> that are coprime to <em>n</em>.</li>
-  </ul>
-  <p>
-    <a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function" target="_blank">
-      Learn more about Euler's totient function
-    </a>
-  </p>
+    <h4>Calculating φ(n) (Euler's totient function)</h4>
+    <p><em>φ(n) = (p-1) * (q-1)</em></p>
+    <v-textarea rows="1" auto-grow label="φ(n)" readonly :model-value="phi" />
+    <ul>
+      <li>This step is crucial for generating the keys.</li>
+      <li>It represents the count of numbers less than <em>n</em> that are coprime to <em>n</em>.</li>
+    </ul>
+    <p>
+      <a href="https://en.wikipedia.org/wiki/Euler%27s_totient_function" target="_blank">
+        Learn more about Euler's totient function
+      </a>
+    </p>
 
-  <h4>Choosing the Public Exponent (e)</h4>
-  <p>Select a number e such that:</p>
-  <ol>
-    <li>1 &lt; e &lt; φ(n)</li>
-    <li>e is coprime to φ(n) (their greatest common divisor is 1)</li>
-  </ol>
-  <v-textarea rows="1" auto-grow label="Public Key (e)" readonly :model-value="e" />
-  <ul>
-    <li>Common choices for <em>e</em> are 3, 5, 17, or 65537.</li>
-    <li>In our demo the smallest suitable <em>e</em> is automatically calculated.</li>
-  </ul>
+    <h4>Choosing the Public Exponent (e)</h4>
+    <p>Select a number e such that:</p>
+    <ol>
+      <li>1 &lt; e &lt; φ(n)</li>
+      <li>e is coprime to φ(n) (their greatest common divisor is 1)</li>
+    </ol>
+    <v-textarea rows="1" auto-grow label="Public Key (e)" readonly :model-value="e" />
+    <ul>
+      <li>Common choices for <em>e</em> are 3, 5, 17, or 65537.</li>
+      <li>In our demo the smallest suitable <em>e</em> is automatically calculated.</li>
+    </ul>
 
-  <h4>Calculating the Private Exponent (d)</h4>
-  <p><em>d</em> is the modular multiplicative inverse of <em>e modulo φ(n)</em></p>
-  <p><em>d * e ≡ 1 (mod φ(n))</em></p>
-  <v-textarea rows="1" auto-grow label="Private Key (d)" readonly :model-value="d" />
-  <ul>
-    <li>This means <em>(d * e) / φ(n)</em> leaves a remainder of 1.</li>
-    <li>In our demo, <em>d</em> is automatically calculated using the modular inverse function.</li>
-  </ul>
-  <p>
-    <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse" target="_blank">
-      Learn more about modular arithmetic
-    </a>
-  </p>
+    <h4>Calculating the Private Exponent (d)</h4>
+    <p><em>d</em> is the modular multiplicative inverse of <em>e modulo φ(n)</em></p>
+    <p><em>d * e ≡ 1 (mod φ(n))</em></p>
+    <v-textarea rows="1" auto-grow label="Private Key (d)" readonly :model-value="d" />
+    <ul>
+      <li>This means <em>(d * e) / φ(n)</em> leaves a remainder of 1.</li>
+      <li>In our demo, <em>d</em> is automatically calculated using the modular inverse function.</li>
+    </ul>
+    <p>
+      <a href="https://en.wikipedia.org/wiki/Modular_multiplicative_inverse" target="_blank">
+        Learn more about modular arithmetic
+      </a>
+    </p>
 
-  <h4>6. Generating the Keys</h4>
-  <ul class="k">
-    <li>
-      Public Key: <em>&lbrace;{{ e }}, {{ n }}&rbrace;</em>
-    </li>
-    <li>
-      Private Key: <em> &lbrace;{{ d }}, {{ n }}&rbrace; </em>
-    </li>
-  </ul>
-  <p>The public key is shared openly, while the private key must be kept secret.</p>
+    <h4>6. Generating the Keys</h4>
+    <ul class="k">
+      <li>
+        Public Key: <em>&lbrace;{{ e }}, {{ n }}&rbrace;</em>
+      </li>
+      <li>
+        Private Key: <em> &lbrace;{{ d }}, {{ n }}&rbrace; </em>
+      </li>
+    </ul>
+    <p>The public key is shared openly, while the private key must be kept secret.</p>
 
-  <h4>Encryption</h4>
-  <p>
-    To encrypt a message <em>m</em>: <em>c = m<sup>e</sup> mod n</em>
-  </p>
-  <v-textarea rows="1" auto-grow label="Message" inputmode="numeric" :hint="mHint" :rules="messageRules" v-model="m" />
-  <ul>
-    <li><em>m</em> must be less than <em>n</em></li>
-    <li><em>c</em> is the resulting ciphertext</li>
-  </ul>
-  <v-textarea
-    rows="1"
-    auto-grow
-    label="Encrypted Message"
-    inputmode="numeric"
-    :hint="mHint"
-    :rules="messageRules"
-    v-model="c"
-  />
+    <h4>Encryption</h4>
+    <p>
+      To encrypt a message <em>m</em>: <em>c = m<sup>e</sup> mod n</em>
+    </p>
+    <v-textarea
+      rows="1"
+      auto-grow
+      label="Message"
+      inputmode="numeric"
+      :hint="mHint"
+      :rules="messageRules"
+      v-model="m"
+    />
+    <ul>
+      <li><em>m</em> must be less than <em>n</em></li>
+      <li><em>c</em> is the resulting ciphertext</li>
+    </ul>
+    <v-textarea
+      rows="1"
+      auto-grow
+      label="Encrypted Message"
+      inputmode="numeric"
+      :hint="mHint"
+      :rules="messageRules"
+      v-model="c"
+    />
 
-  <h4>Decryption</h4>
-  <p>
-    To decrypt the ciphertext <em>c</em>: <em>m = c<sup>d</sup> mod n</em>
-  </p>
-  <v-textarea rows="1" auto-grow label="Decrypted Message" readonly :model-value="mDecrypted" />
-  <p>This recovers the original message <em>m</em>.</p>
+    <h4>Decryption</h4>
+    <p>
+      To decrypt the ciphertext <em>c</em>: <em>m = c<sup>d</sup> mod n</em>
+    </p>
+    <v-textarea rows="1" auto-grow label="Decrypted Message" readonly :model-value="mDecrypted" />
+    <p>This recovers the original message <em>m</em>.</p>
 
-  <h4>Security of RSA</h4>
-  <p>
-    The security of RSA relies on the practical difficulty of factoring the product of two large prime numbers. While
-    factoring <em>n</em> to find <em>p</em> and <em>q</em> is theoretically possible, it becomes computationally
-    infeasible with sufficiently large primes.
-  </p>
-  <p>
-    <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Security_and_practical_considerations" target="_blank">
-      Learn more about RSA security
-    </a>
-  </p>
+    <h4>Security of RSA</h4>
+    <p>
+      The security of RSA relies on the practical difficulty of factoring the product of two large prime numbers. While
+      factoring <em>n</em> to find <em>p</em> and <em>q</em> is theoretically possible, it becomes computationally
+      infeasible with sufficiently large primes.
+    </p>
+    <p>
+      <a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Security_and_practical_considerations" target="_blank">
+        Learn more about RSA security
+      </a>
+    </p>
+  </v-container>
 </template>
 
 <style scoped>
