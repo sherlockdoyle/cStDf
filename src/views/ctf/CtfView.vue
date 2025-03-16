@@ -6,6 +6,7 @@ import { addSolved, getAllSolved } from '@/storage/solved';
 import SparkMD5 from 'spark-md5';
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import CtfCard from './CtfCard.vue';
 import DependencyList from './DependencyList.vue';
 import SolutionButton from './SolutionButton.vue';
 import SolvedAnimationOverlay from './SolvedAnimationOverlay.vue';
@@ -17,11 +18,7 @@ const ctf = ctfs[path];
 const isSolved = getAllSolved().has(path);
 
 const details = useAsyncLoader(ctf.details, path);
-const { Description, CtfComponent } = ctf;
-const htmlUrl = ctf.htmlUrl && useAsyncLoader(ctf.htmlUrl, path);
-const imageUrl = ctf.imageUrl && useAsyncLoader(ctf.imageUrl, path);
-const pdfUrl = ctf.pdfUrl && useAsyncLoader(ctf.pdfUrl, path);
-const audioUrl = ctf.audioUrl && useAsyncLoader(ctf.audioUrl, path);
+const { Description, content } = ctf;
 
 const descUpdater = useMetaTags(ctf.name, path);
 watch(details, details => descUpdater(details.data?.summary ?? null));
@@ -37,7 +34,6 @@ const flagInputRules = [
 function checkFlag() {
   if (isValid.value) {
     const inputHash = SparkMD5.hash(flagInput.value);
-    console.log(inputHash, flagInput.value);
     if (inputHash === details.value.data?.flagMD5) {
       solveStatus.value = 'success';
       addSolved(path);
@@ -51,12 +47,12 @@ function checkFlag() {
 </script>
 
 <template>
-  <v-layout v-if="details.loading || htmlUrl?.loading || imageUrl?.loading">
+  <v-layout v-if="details.loading">
     <LoadingComponent />
   </v-layout>
 
-  <v-alert v-else-if="details.error || htmlUrl?.error || imageUrl?.error" color="error" icon="$error">
-    {{ details.error }} {{ htmlUrl?.error }} {{ imageUrl?.error }}
+  <v-alert v-else-if="details.error" color="error" icon="$error">
+    {{ details.error }}
   </v-alert>
 
   <template v-else>
@@ -106,34 +102,7 @@ function checkFlag() {
     </v-responsive>
 
     <hr class="ml-auto" />
-    <v-card
-      v-if="CtfComponent || htmlUrl?.data || imageUrl?.data || pdfUrl?.data || audioUrl?.data"
-      class="d-flex align-center mx-sm-0 mx-2 my-4 overflow-x-auto"
-    >
-      <v-card-item v-if="CtfComponent" class="d-block flex-0-1 mx-auto">
-        <CtfComponent />
-      </v-card-item>
-
-      <v-img v-else-if="imageUrl?.data" :src="imageUrl.data" />
-
-      <div v-else-if="htmlUrl?.data || pdfUrl?.data || audioUrl?.data" class="container">
-        <template v-if="htmlUrl?.data">
-          <iframe :src="htmlUrl.data" frameborder="0" width="100%" height="100%" />
-          <v-btn icon="mdi-open-in-new" title="Open website in new tab" :href="htmlUrl.data" target="_blank" />
-        </template>
-
-        <template v-else-if="pdfUrl?.data">
-          <embed :src="pdfUrl.data" type="application/pdf" width="100%" height="100%" />
-          <div>Download the PDF if you cannot see it.</div>
-          <v-btn icon="mdi-download" title="Download PDF" :href="pdfUrl.data" target="_blank" />
-        </template>
-
-        <template v-else-if="audioUrl?.data">
-          <audio :src="audioUrl.data" controls />
-          <v-btn icon="mdi-download" title="Download audio" :href="audioUrl.data" target="_blank" />
-        </template>
-      </div>
-    </v-card>
+    <CtfCard v-if="content" :content="content" :path="path" />
 
     <SolvedAnimationOverlay :visible="showSolved" />
   </template>
@@ -152,50 +121,6 @@ hr {
 
 .flag-input :deep(input) {
   font-family: monospace;
-}
-
-.v-card::before {
-  display: block;
-  float: left;
-  padding-top: 100%;
-  content: '';
-}
-
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem;
-  aspect-ratio: 1/1;
-  width: 100%;
-
-  iframe,
-  embed {
-    display: block;
-  }
-  audio {
-    width: 50%;
-    min-width: 300px;
-    max-width: 600px;
-  }
-
-  embed + div {
-    width: 100%;
-  }
-
-  .v-btn {
-    position: absolute;
-    right: 0;
-
-    iframe ~ & {
-      top: 0;
-    }
-    embed ~ &,
-    audio ~ & {
-      bottom: 0;
-    }
-  }
 }
 </style>
 <style>
