@@ -1,4 +1,4 @@
-import{_ as a,o as n,c as s,a as d}from"./d.js";const p={};function e(c,t){return n(),s("pre",null,t[0]||(t[0]=[d(`  <span class="n" data-v-07d904eb># 	<span class="i" data-v-07d904eb>include</span> 	<span class="s" data-v-07d904eb>&lt;stdio.h&gt;</span></span>
+import{_ as a,c as n,o as s,a as d}from"./d.js";const p={};function e(c,t){return s(),n("pre",null,t[0]||(t[0]=[d(`  <span class="n" data-v-07d904eb># 	<span class="i" data-v-07d904eb>include</span> 	<span class="s" data-v-07d904eb>&lt;stdio.h&gt;</span></span>
 	
  	   <span class="i" data-v-07d904eb>const</span>		  <span class="i" data-v-07d904eb>char</span>  
 	*

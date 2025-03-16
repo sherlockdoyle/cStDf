@@ -1,1 +1,1 @@
-import{T as o}from"./2a.js";import{d as e,o as n,e as t}from"./d.js";const _=e({__name:"CTF",setup(r){return(a,s)=>(n(),t(o,{k:"n",o:"e",f:"T3nsi0n"}))}});export{_ as default};
+import{T as o}from"./2d.js";import{d as e,e as t,o as n}from"./d.js";const p=e({__name:"CTF",setup(r){return(a,s)=>(n(),t(o,{k:"e",o:"n",f:"C1053_bonD"}))}});export{p as default};

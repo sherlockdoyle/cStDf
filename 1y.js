@@ -1,1 +1,1 @@
-const e="3230e1ae4eec1c505ba2ed1fcaf26857",s=["onise"],a="Where are the numbers gone to?",n={flagMD5:e,dependencies:s,summary:a};export{n as default,s as dependencies,e as flagMD5,a as summary};
+const e="f84a973c0ed307035f9b2d2d73b9f72b",t="From the moment they enter the world together, they forge a unique bond.",o={flagMD5:e,summary:t};export{o as default,e as flagMD5,t as summary};

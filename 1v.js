@@ -1,1 +1,1 @@
-const e="f84a973c0ed307035f9b2d2d73b9f72b",t="From the moment they enter the world together, they forge a unique bond.",o={flagMD5:e,summary:t};export{o as default,e as flagMD5,t as summary};
+const e="69c9ff36767dc680fdb3b4b4d5b89583",s="The twine carries the movement, like a message zipped across a tightrope.",t={flagMD5:e,summary:s};export{t as default,e as flagMD5,s as summary};
