@@ -1,1 +1,1 @@
-const e="f84a973c0ed307035f9b2d2d73b9f72b",t="From the moment they enter the world together, they forge a unique bond.",o={flagMD5:e,summary:t};export{o as default,e as flagMD5,t as summary};
+const e="30fb1c9dcaa3d8212c03d18311d3e181",a="You can feel the pulse of the city in the playful mix of shades across her face.",s={flagMD5:e,summary:a};export{s as default,e as flagMD5,a as summary};

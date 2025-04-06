@@ -1,1 +1,1 @@
-const e="2407502a5e46d6e8e88ca2e027042c12",t="The objective, break the RSA encryption.",a={flagMD5:e,summary:t};export{a as default,e as flagMD5,t as summary};
+const e="883a5e14ff6f4aa57afe03279dcd9c25",a='The objective is to locate a specific string of text, referred to as "flags", which are concealed in intentionally complex files or websites.',t={flagMD5:e,summary:a};export{t as default,e as flagMD5,a as summary};

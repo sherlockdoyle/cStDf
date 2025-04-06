@@ -1,1 +1,1 @@
-const a="f4d1c8396985435f038d0709fb56d116",e="There is a special image in Dexter's laboratory.",s={flagMD5:a,summary:e};export{s as default,a as flagMD5,e as summary};
+const e="f84a973c0ed307035f9b2d2d73b9f72b",t="From the moment they enter the world together, they forge a unique bond.",o={flagMD5:e,summary:t};export{o as default,e as flagMD5,t as summary};

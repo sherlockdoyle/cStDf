@@ -1,1 +1,11 @@
-import{c as o,o as r,a as s}from"./d.js";const a={class:"markdown-body"},p={__name:"description",setup(i,{expose:t}){return t({frontmatter:{}}),(h,e)=>(r(),o("div",a,e[0]||(e[0]=[s("<p>Behold! A sonnet of our puzzling quest,<br> This GitHub page, with secret folly dressed.<br> For this same game, this project of delight,<br> Doth harbor on its face an oversight.</p><p>No need to delve in files deep or wide,<br> For on the landing page doth error hide.<br> A word misspelt, a trifling mistake,<br> That long escaped the keenest eye to take.</p><p>The author, in his whimsy, left it so,<br> To challenge those who seek what’s hid below.<br> The flag thou seek’st, in this our merry game,<br> Is naught but yonder word, restored to fame.</p><p>Correct the spelling of this wayward phrase,<br> And claim thy prize, deserving of our praise.</p>",4)])))}};export{p as default};
+import{c as t,o as s,a as e}from"./d.js";const a={class:"markdown-body"},m={__name:"description",setup(r,{expose:o}){return o({frontmatter:{}}),(p,n)=>(s(),t("div",a,n[0]||(n[0]=[e("pre",null,[e("code",{class:"language-json"},`{
+  "name": "cStDf",
+  "details": {
+    "flagCRC32": 73844263
+  },
+  "Description": {
+    "name": "AsyncComponentWrapper",
+    "__asyncResolved": { "__name": "description" }
+  }
+}
+`)],-1)])))}};export{m as default};
