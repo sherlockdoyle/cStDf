@@ -1,0 +1,3 @@
+import{c as l,o,b as e}from"./d.js";const r={class:"markdown-body"},d={__name:"description",setup(n,{expose:a}){return a({frontmatter:{}}),(i,t)=>(o(),l("div",r,t[0]||(t[0]=[e("p",null,"Occasionally, the flag might not be in the required format. When this happens, you must reformat the flag as previously explained. Additionally, the flag might include characters that are not valid and these should be removed. (Recall the characters that are considered valid?) For example, if the flag is",-1),e("pre",null,[e("code",null,`flag{ex amp-le}
+`)],-1),e("p",null,"you should reformat it to",-1),e("pre",null,[e("code",null,`cStDf{example}
+`)],-1),e("p",null,"Are you able to find the flag for this challenge?",-1)])))}};export{d as default};

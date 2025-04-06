@@ -1,0 +1,1 @@
+import{c as a,o as s,b as t,f as o}from"./d.js";const n={class:"markdown-body"},l={__name:"description",setup(c,{expose:r}){return r({frontmatter:{}}),(d,e)=>(s(),a("div",n,e[0]||(e[0]=[t("p",null,[o("This is a sort of a more traditinal CTF. The objective, break the RSA encryption. You have to decrypt "),t("code",null,"717368321110468608"),o(".")],-1)])))}};export{l as default};
