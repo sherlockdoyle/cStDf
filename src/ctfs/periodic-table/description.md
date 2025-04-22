@@ -1,0 +1,3 @@
+Welcome to the Quantum Chemistry Lab! We've been synthesizing exotic elements, but the diagnostic display classifying them has gone haywire. The element labels are encrypted! Our lead chemist, Dr. **Valen**tina **Ce**rmet, suspects the encryption key is related to the fundamental property governing how elements bond – their **valence**. She left a note: '**V**arious **a**toms **l**ink **e**nergetically; **n**oble **c**onfigurations **e**merge.'
+
+To restore the display, you'll need to input the correct keyword into the console below. This should decrypt the labels. Then, arrange the elements correctly within their **periods** based on standard periodic table rules. Successfully organizing the table will reveal a hidden confirmation code.
